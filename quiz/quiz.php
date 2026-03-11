@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h1 class="tt">Quiz Geek</h1>
+<h1 id="quizi">Quiz Geek</h1>
 
 <form action="resultado.php" method="POST">
 
