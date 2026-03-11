@@ -1,11 +1,22 @@
 <?php
 
+$arquivo = "contador.txt";
+$contador = file_get_contents($arquivo);
+$contador = $contador + 1;
+file_put_contents($arquivo, $contador);
+
+
 $nome = $_POST['nome'];
 $p1 = $_POST['p1'];
 $p2 = $_POST['p2'];
 $p3 = $_POST['p3'];
 $p4 = $_POST['p4'];
 $p5 = $_POST['p5'];
+$p6 = $_POST['p6'];
+$p7 = $_POST['p7'];
+$p8 = $_POST['p8'];
+$p9 = $_POST['p9'];
+$p10 = $_POST['p10'];
 
 $frontend = 0;
 $backend = 0;
@@ -98,6 +109,7 @@ if($p5 == "dados"){
     $dados++;
 }
 
+
 if($p6 == "frontend"){
     $frontend++;
 }
@@ -113,6 +125,7 @@ if($p6 == "jogos"){
 if($p6 == "dados"){
     $dados++;
 }
+
 
 if($p7 == "frontend"){
     $frontend++;
@@ -130,6 +143,7 @@ if($p7 == "dados"){
     $dados++;
 }
 
+
 if($p8 == "frontend"){
     $frontend++;
 }
@@ -146,6 +160,7 @@ if($p8 == "dados"){
     $dados++;
 }
 
+
 if($p9 == "frontend"){
     $frontend++;
 }
@@ -161,6 +176,7 @@ if($p9 == "jogos"){
 if($p9 == "dados"){
     $dados++;
 }
+
 
 if($p10 == "frontend"){
     $frontend++;
@@ -182,16 +198,21 @@ if($p10 == "dados"){
 
 if($frontend > $backend && $frontend > $jogos && $frontend > $dados){
     $perfil = "Front-End";
-    $img = "./img/front.png";
-    $sobre = "Você gosta da parte visual e interativa dos sites.<br> Esse tipo de programador
-    cria tudo aquilo que o usuário vê e usa na tela. <br><br> Ele trabalha com:<br><br>
+    $img = "./img/front.webp";
+    $sobre = "O desenvolvedor front-end é responsável pela parte visual e interativa de um site. <br>
+    Ele cria tudo o que o usuário vê e utiliza na tela, como botões, menus e layouts. <br>
+    Trabalha principalmente com HTML, CSS e JavaScript. <br>
+    Seu objetivo é garantir que o site seja bonito, organizado e fácil de usar. <br><br> Ele trabalha com:<br><br>
     HTML para estruturar páginas<br>CSS para o estilo e design<br>JavaScript para animações e interações";
 }
 
 elseif($backend > $frontend && $backend > $jogos && $backend > $dados){
     $perfil = "Back-End";
     $img = "./img/Back-end.avif";
-    $sobre = "Você gosta da lógica e funcionamento por trás do sistema.<br><br>
+    $sobre = "O desenvolvedor back-end é responsável pela parte interna de um site ou sistema. <br>
+    Ele cria a lógica que faz o sistema funcionar e processa as informações enviadas pelos usuários. <br>
+    Também trabalha com servidores, bancos de dados e linguagens como PHP e Python.<br>
+    Seu trabalho garante que tudo funcione corretamente por trás da interface do site..<br><br>
      O back-end faz tudo que acontece por trás do site, como:<br><br>salvar dados<br>criar sistemas
      <br>conectar banco de dados<br><br>Tecnologias comuns:<br><br>PHP<br>Python";
 }
@@ -199,15 +220,21 @@ elseif($backend > $frontend && $backend > $jogos && $backend > $dados){
 elseif($jogos > $frontend && $jogos > $backend && $jogos > $dados){
     $perfil = "Desenvolvedor de jogos";
     $img = "./img/dev.webp";
-    $sobre = "Você provavelmente gosta de criatividade, lógica e diversão ao mesmo tempo.<br><br>
-     Esse profissional cria:<br><br>personagens<br>mundos
-     <br>mecânicas de jogo<br>desafios<br><br>Ferramentas comuns:<br><br>Unity<br>Unreal Engine";
+    $sobre = "O desenvolvedor de jogos é o profissional responsável por criar e programar jogos digitais. <br>
+    Ele desenvolve mecânicas, personagens, cenários e interações dentro do jogo. <br>
+    Esse profissional combina criatividade com lógica de programação para construir experiências divertidas.<br>
+    Também trabalha com ferramentas e motores de jogo para transformar ideias em jogos funcionais..<br><br>
+    Esse profissional cria:<br><br>personagens<br>mundos
+    <br>mecânicas de jogo<br>desafios<br><br>Ferramentas comuns:<br><br>Unity<br>Unreal Engine";
 }
 
 else{
     $perfil = "Cientistas de dados";
     $img = "./img/dados.jpg";
-    $sobre = "Você gosta de analisar informações e encontrar padrões.<br><br>
+    $sobre = "O analista de dados é o profissional responsável por coletar, organizar e interpretar informações. <br>
+    Ele analisa grandes quantidades de dados para encontrar padrões e ajudar na tomada de decisões.<br>
+    Utiliza ferramentas e linguagens como Python e planilhas para estudar os dados.<br>
+    Seu trabalho transforma dados brutos em informações úteis para empresas e projetos..<br><br>
      Esse profissional trabalha com:<br><br>grandes quantidades de dados<br>estatísticas
      <br>previsões<br><br>Ferramenta comun:<br><br>Python";
 }
@@ -222,7 +249,7 @@ setcookie("jogador",$nome,time()+3600);
 <head>
 <meta charset="UTF-8">
 <title>Resultado do Quiz</title>
-<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="./estilo.css">
 <link rel="icon" type="image/png" href="img/quizi.png">
 </head>
 
@@ -235,7 +262,7 @@ setcookie("jogador",$nome,time()+3600);
 <h2 class="tt">Seu perfil é: </h2>
 <h2 class="bla"> <?php echo $perfil; ?></h2>
 
-<img src="" alt="">
+<img src="<?php echo $img; ?>" alt="Resultado do quiz" id="image">
 
 <br>
 
@@ -246,6 +273,7 @@ setcookie("jogador",$nome,time()+3600);
 <a href="index.php">
 <button id="JN">Jogar novamente</button>
 </a>
+<strong><p class="tt">Este quiz já foi jogado <?php echo $contador; ?> vezes!</p></strong>
 
 </body>
 </html>

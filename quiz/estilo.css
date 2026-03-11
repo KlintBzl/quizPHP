@@ -74,3 +74,8 @@ body {
     margin-top: 1px;
     color: rgb(7, 106, 187);
 }
+
+#image {
+    width: 200px !important;
+    height: auto;
+}
